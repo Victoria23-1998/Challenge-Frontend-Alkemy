@@ -1,0 +1,78 @@
+input{
+    width: 54%;
+    margin-right: 10px;
+    border-color: #EC524B;
+}
+form{
+   display: flex;
+   justify-content: center;
+   position: relative;
+   z-index: 2;
+  margin-top: -50px;
+}
+.content-search{
+    padding: 0px;
+    margin-bottom: 30px;
+    -webkit-box-shadow: 0 5px 10px 1px #0A0A0A;
+    box-shadow: 0 5px 10px 1px #0A0A0A;
+    img{
+        width: 100%;
+        position: relative;
+        z-index: 1;
+    }
+    button{
+        background-color: whitesmoke;
+        
+    }
+}
+.btn-outline-success{
+    color: #EC524B;
+   border-color: #EC524B;
+}
+@media screen and (min-width:500px) and (max-width:800px) {
+    .content-search{
+        height: 80px;
+        img{
+          height: 100%;  
+        }
+    }
+    form{
+        margin-top: -60px;
+    }
+}
+@media screen and (min-width:801px) and (max-width:1000px) {
+    .content-search{
+        height: 90px;
+        background-image: url('../../../assets/img/fondoSerach.jpg');
+        position: relative;
+        z-index: 1;
+        margin-top: 100px;
+        img{
+            display: none; 
+        }
+    }
+   
+    input{
+        margin-top: 25px;
+    }
+    button{
+        margin-top: 25px; 
+    }
+}
+@media screen and (min-width:1001px){
+    .content-search{
+       height: 90px;
+       margin-top: 150px;
+       background-image: url('../../../assets/img/fondoSerach.jpg');
+      
+        img{
+          display: none; 
+        }
+    }
+    input{
+        margin-top: 25px;
+    }
+    button{
+        margin-top: 25px; 
+    }
+}

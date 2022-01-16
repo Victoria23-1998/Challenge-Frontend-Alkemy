@@ -1,0 +1,9 @@
+<section>
+    <div class="container-fluid content-search">
+        <img src="../../../assets/img/fondoSerach.jpg" alt="">
+        <form class="d-flex"  #formDirective="ngForm" (ngSubmit)="searchHero($event)"  >
+          <input class="form-control me-2"  placeholder="Search for Superhero or Villain" aria-label="Search" [formControl]="name" #input  >
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+</section>

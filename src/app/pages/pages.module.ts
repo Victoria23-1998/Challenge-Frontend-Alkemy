@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-import { BootstrapModule } from '../shared/bootstrap/bootstrap.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { ComponentsModule } from '../components/components.module';
 import 'animate.css';
 
 @NgModule({
@@ -12,7 +14,9 @@ import 'animate.css';
   ],
   imports: [
     CommonModule,
-    BootstrapModule
+    ReactiveFormsModule,
+    BrowserModule,
+    ComponentsModule 
   ]
 })
 export class PagesModule { }
