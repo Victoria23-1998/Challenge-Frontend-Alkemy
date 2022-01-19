@@ -1,1 +1,29 @@
-<p>wanted-items works!</p>
+<section  >
+    
+    <div *ngFor="let hero of listHeoresGet" class="content-item">
+        <p>{{hero.name}}</p>
+        <img src="{{hero.image?.url}}" alt="">
+        <div class="content-zoom" (click)="searchPowerstats(hero.id!,content)">
+            <img src="../../../assets/img/icons8-arrow-64.png" alt="">
+        </div>
+    </div>
+    
+</section>
+
+<!--Modal-->
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <app-powerstats  [powerstats]=power ></app-powerstats>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark info" (click)="modal.close('Save click')">+ Info</button>
+      <button type="button" class="btn btn-outline-dark add" (click)="addHeroTeam();modal.close('Save click')">Add to Team</button>
+    </div>
+  </ng-template>
+

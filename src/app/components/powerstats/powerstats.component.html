@@ -1,1 +1,8 @@
-<p>powerstats works!</p>
+
+<div *ngFor="let power of powerstats | keyvalue">
+    <p>{{power.key}}
+    <ngb-progressbar [showValue]="false" type="warning" [value]="power.value" [max]="100">
+        <span>{{power.value}}%</span>
+    </ngb-progressbar>
+</p>
+</div>

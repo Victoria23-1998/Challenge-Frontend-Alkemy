@@ -1,4 +1,6 @@
 
 <section>
-    <p>YOU STILL HAVEN’T A TEAM, START SEARCHING AND ADDING A HERO</p>
+    <p *ngIf="listHeroTeam.length === 0">YOU STILL HAVEN’T A TEAM, START SEARCHING AND ADDING A HERO</p>
+    <app-powerstats  *ngIf="listHeroTeam.length !==0" [powerstats]=listPowerstats ></app-powerstats>
+    <app-team-items></app-team-items>
 </section>
