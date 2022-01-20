@@ -9,6 +9,7 @@ import { TeamItemsComponent } from './team-items/team-items.component';
 import { PowerstatsComponent } from './powerstats/powerstats.component';
 import { FormsModule }   from '@angular/forms';
 import { NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap';
+import { InfoHeroComponent } from './info-hero/info-hero.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap';
     WantedItemsComponent,
     TeamItemsComponent,
     PowerstatsComponent,
+    InfoHeroComponent,
 
   ],
   imports: [

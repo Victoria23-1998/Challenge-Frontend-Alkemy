@@ -56,3 +56,12 @@ export interface Appearan{
     height?:number;
     weight?:number;
 }
+export interface InfoHero{
+    
+    Height:string;
+    Weight:string;
+    Aliases:string;
+    "Eye-Color":string;
+    "Hair-Color":string;
+    "Work-Occupation":string;
+}

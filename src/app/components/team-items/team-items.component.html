@@ -2,6 +2,9 @@
     <div *ngFor="let hero of listTeamHeroes" class="content-item">
         <p>{{hero?.name}}</p>
         <img src="{{hero.image?.url}}" alt="">
-        <button type="button" class="btn btn-dark" (click)="deleteHero(hero.id)">Delete</button>
+        <div class="content-btn">
+        <button type="button" class="btn btn-outline-dark info " (click)="infoHero(hero.id)">+ Info</button>
+        <button type="button" class="btn btn-dark delete" (click)="deleteHero(hero.id)">Delete</button>
+        </div>
     </div>
 </section>

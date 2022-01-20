@@ -24,14 +24,12 @@ p{
         border-radius: 5px;
         margin-top: 10px;
     }
-    button{
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translate(-50%, 0);
-        margin-bottom: 10px;
-        background-color: #EC524B;
-    }
+    
+}
+.info{
+    background-color:#9AD3BC !important;
+    margin-right: 5px;
+    margin-left: 8px;
 }
 section{
     display: grid;
@@ -40,6 +38,21 @@ section{
     padding-top: 15px;
     column-gap: 25px;
     justify-content: center;
+}
+.delete{
+    background-color:#EC524B !important ;
+}
+
+.content-btn{
+    display: flex;
+    flex-direction:row;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 5px;
+    
+}
+.btn{
+    padding: 5px;
 }
 @media screen and (min-width:801px) and (max-width:1000px) {
     section{

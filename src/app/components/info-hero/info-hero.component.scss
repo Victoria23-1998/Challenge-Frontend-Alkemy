@@ -1,0 +1,19 @@
+section{
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto;
+    justify-content: center;
+    padding-top: 100px;
+}
+.info{
+    background-color: #9AD3BC;
+}
+p{
+    color: whitesmoke;
+}
+h3{
+    color: whitesmoke; 
+}
+img{
+    width: 200px;
+}

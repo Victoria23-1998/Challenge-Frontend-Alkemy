@@ -1,4 +1,5 @@
 import { Component, OnInit,DoCheck } from '@angular/core';
+import { Router } from '@angular/router';
 import { TeamItemsService } from 'src/app/core/team-items.service';
 import { HeroResponse } from 'src/app/interface/heroResponse';
 
@@ -11,7 +12,7 @@ export class TeamItemsComponent implements OnInit {
 
   listTeamHeroes:HeroResponse[]=[]
 
-  constructor(public teamItemsService:TeamItemsService) { 
+  constructor(public teamItemsService:TeamItemsService,private router:Router) { 
     this.listTeamHeroes=this.teamItemsService.listHeroesTeam
 
   }
@@ -23,5 +24,9 @@ export class TeamItemsComponent implements OnInit {
   
 deleteHero(idHero:string){
   this.listTeamHeroes=this.teamItemsService.deleteHero(idHero)
+}
+infoHero(idHero:string){
+  this.teamItemsService.InfoHero(idHero)
+  this.router.navigate(['/info']);
 }
 }

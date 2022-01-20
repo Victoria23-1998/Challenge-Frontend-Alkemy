@@ -5,6 +5,8 @@ import { searchResponse } from '../interface/searchResponse';
 import { Powerstats } from '../interface/searchResponse';
 import { Appearan, HeroResponse } from '../interface/heroResponse';
 import { Powers } from '../interface/powerstatsResponse';
+import { InfoHeroComponent } from '../components/info-hero/info-hero.component';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
@@ -27,7 +29,8 @@ export class TeamItemsService {
     height:0,
     weight:0
   }
-  constructor(private http:HttpClient) { }
+  idHero:string=''
+  constructor(private http:HttpClient,private router:Router) { }
   
   getHeroForName(name:string):Observable<searchResponse>{
     return this.http.get<searchResponse>(this.urlBase+'search/'+name)
@@ -105,8 +108,11 @@ deleteHero(idHero:string){
     this.heightWeightTeam(dataHero,2)
   })
   
-  
+ return this.listHeroesTeam = newArrayheroes
+}
 
-  return this.listHeroesTeam = newArrayheroes
+InfoHero(idHero:string){
+  this.idHero=idHero
+  console.log(this.idHero)
 }
 }
