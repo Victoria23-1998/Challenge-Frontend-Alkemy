@@ -2,7 +2,7 @@ section{
     padding-top: 80px;
     padding-left: 15px;
     padding-right: 15px;
-    p{
+    .titulo{
         color: whitesmoke;
         text-align: center;
         font-family: 'Syncopate';
@@ -11,6 +11,37 @@ section{
         margin-top: 20px;
         margin-bottom: 40px;
     }
+}
+.value-appearance{
+   color: whitesmoke;
+   font-family: 'Syncopate';
+   text-align: center;
+   font-weight: bold;
+}
+.title-team{
+    font-family: 'Syncopate';
+    font-weight: bold;
+    color: #9AD3BC;
+    text-align: center;
+}
+.content-team{
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto;
+    justify-content: center;
+    align-items: center;
+}
+.title-principal{
+    color: #EC524B;
+    font-family: 'Syncopate';
+    text-align: center;
+    font-weight: bold;
+}
+.title-power{
+    color: whitesmoke;
+    font-family: 'Syncopate';
+    text-align: center;
+    font-weight: bold;
 }
 
 @media screen and (min-width:500px) and (max-width:800px) {

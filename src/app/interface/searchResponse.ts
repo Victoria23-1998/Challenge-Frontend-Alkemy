@@ -56,3 +56,9 @@ export interface Work {
     occupation: string;
     base:       string;
 }
+
+export interface ListModal{
+    name:string,
+    alignment:string;
+
+}

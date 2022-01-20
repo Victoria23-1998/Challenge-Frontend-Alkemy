@@ -51,3 +51,8 @@ export interface Work {
     occupation?: string;
     base?:       string;
 }
+
+export interface Appearan{
+    height?:number;
+    weight?:number;
+}

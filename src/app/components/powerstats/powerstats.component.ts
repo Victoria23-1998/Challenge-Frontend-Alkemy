@@ -1,5 +1,5 @@
 import { TeamItemsService } from 'src/app/core/team-items.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit,OnChanges } from '@angular/core';
 import { Powers } from 'src/app/interface/powerstatsResponse';
 @Component({
   selector: 'app-powerstats',

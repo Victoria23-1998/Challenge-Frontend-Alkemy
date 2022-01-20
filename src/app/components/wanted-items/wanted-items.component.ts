@@ -1,11 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { Powerstats } from 'src/app/interface/heroResponse';
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ModalDismissReasons, NgbAlert, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TeamItemsService } from 'src/app/core/team-items.service';
 import { HeroResponse } from 'src/app/interface/heroResponse';
-import { Result } from 'src/app/interface/searchResponse';
 import { Powers } from 'src/app/interface/powerstatsResponse';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { ListModal } from 'src/app/interface/searchResponse';
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-wanted-items',
   templateUrl: './wanted-items.component.html',
@@ -15,8 +14,12 @@ export class WantedItemsComponent implements OnInit {
 
   //@Input()listHeroesSearch:Result[]=[]
   @Input() public listHeoresGet:HeroResponse[]=[]
+  listModal:ListModal={
+    name:'',
+    alignment:''
+  }
   closeResult = '';
-
+  alertHeroeDuplicado:boolean=false
   power:Powers={
     intelligence:0,
     strength:0,
@@ -28,22 +31,29 @@ export class WantedItemsComponent implements OnInit {
   listPowerstats:Powers[]=[]
   listHeroesTeam:HeroResponse[]=[]
   idHero:string=''
-  
+ 
   constructor(private modalService: NgbModal, private teamItemsService:TeamItemsService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    
+  }
+  ngDoCheck(){
+    this.listHeoresGet.forEach(el=>{
+      this.listModal.name=el.name!
+      this.listModal.alignment=el.biography?.alignment!
+    })
+  }
   //abre el modal
   open(content:any) {
     this.modalService.open(content,{ centered: true }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.idHero=''
-      this.power={} as Powers
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      this.closeResult = `Dismissed ${this.getDismissReasonn(reason)}`;
     });
   }
   //cierra el modal
-  private getDismissReason(reason: any): string {
+  private getDismissReasonn(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       
       return 'by pressing ESC';
@@ -60,7 +70,9 @@ export class WantedItemsComponent implements OnInit {
 
   searchPowerstats(idHero:string,content:any){
     this.power={} as Powers
+    
     this.open(content)
+   
     this.idHero=idHero
     this.teamItemsService.getPowerstats(idHero).subscribe(data =>{
       
@@ -72,19 +84,45 @@ export class WantedItemsComponent implements OnInit {
       this.power.strength=parseInt(data.strength);
      
     })
-    
   }
 
   addHeroTeam(){
-    this.teamItemsService.getTeam(this.idHero,this.listHeoresGet)
+    
+    
+    switch (this.teamItemsService.addTeamItem(this.idHero,this.listHeoresGet)) {
+      case 1:
+        this.alertValidation('Se pueden agregar máximo 3 heroes buenos')
+      break;
+      case 2:
+        this.alertValidation('Se pueden agregar máximo 3 heroes malos')
+      break;
+      case 3:
+        this.alertValidation('Este Heroe ya esta en el Team')
+      break;
+      
+    }
+    
     this.power= this.teamItemsService.power
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Se ha agregado al Team con éxito',
+      showConfirmButton: false,
+      timer: 1500
+    })
+   
   }
 
-  //funcion para ordenar el objeto de powerstats de mayor a menor
- 
-  
-
+  alertValidation(typeValidation:string){
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: typeValidation,
+    })
+  }
 }
+
+
 
 
 

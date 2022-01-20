@@ -7,19 +7,21 @@ import { HeroResponse } from 'src/app/interface/heroResponse';
   templateUrl: './team-items.component.html',
   styleUrls: ['./team-items.component.scss']
 })
-export class TeamItemsComponent implements OnInit, DoCheck {
+export class TeamItemsComponent implements OnInit {
 
   listTeamHeroes:HeroResponse[]=[]
 
   constructor(public teamItemsService:TeamItemsService) { 
-    this.teamItemsService.listHeroesTeam
+    this.listTeamHeroes=this.teamItemsService.listHeroesTeam
+
   }
 
   ngOnInit(): void {
-    
+    //this.listTeamHeroes = JSON.parse(localStorage.getItem('HeroTeam')||'')
+    this.listTeamHeroes=this.teamItemsService.listHeroesTeam
   }
   
-ngDoCheck(){
- 
+deleteHero(idHero:string){
+  this.listTeamHeroes=this.teamItemsService.deleteHero(idHero)
 }
 }

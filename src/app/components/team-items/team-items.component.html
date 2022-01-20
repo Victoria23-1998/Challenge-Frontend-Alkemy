@@ -1,7 +1,7 @@
 <section>
-    <div *ngFor="let hero of this.teamItemsService.listHeroesTeam" class="content-item">
+    <div *ngFor="let hero of listTeamHeroes" class="content-item">
         <p>{{hero?.name}}</p>
         <img src="{{hero.image?.url}}" alt="">
-        <button type="button" class="btn btn-dark">Delete</button>
+        <button type="button" class="btn btn-dark" (click)="deleteHero(hero.id)">Delete</button>
     </div>
 </section>
