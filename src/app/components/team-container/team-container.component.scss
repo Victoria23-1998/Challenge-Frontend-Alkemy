@@ -25,11 +25,9 @@ section{
     text-align: center;
 }
 .content-team{
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: auto auto auto;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .title-principal{
     color: #EC524B;
@@ -43,7 +41,10 @@ section{
     text-align: center;
     font-weight: bold;
 }
-
+.content-power{
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
 @media screen and (min-width:500px) and (max-width:800px) {
     section{
         p{
@@ -60,5 +61,19 @@ section{
             margin-top: 60px;
             margin-bottom: 0px;
         }
+    }
+    .content-power{
+      display: flex;
+      justify-content: space-around;
+      margin-top: 30px;
+      margin-bottom: 50px;
+    }
+    .content-appearance{
+        border-right: 1px solid whitesmoke;
+        padding-right: 70px;
+
+    }
+    .content-p{
+        width: 500px;
     }
 }

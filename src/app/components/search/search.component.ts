@@ -50,6 +50,6 @@ export class SearchComponent implements OnInit,OnDestroy {
  
   getHeroes(){
     this.heroesList=this.itemsService.parameters
-    console.log(this.heroesList)
+   
   }
 }

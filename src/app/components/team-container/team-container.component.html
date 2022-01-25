@@ -1,17 +1,23 @@
 
 <section>
     <p *ngIf="listHeroTeam.length === 0" class="titulo">YOU STILL HAVEN’T A TEAM, START SEARCHING AND ADDING A HERO</p>
-    <div class="content-team" *ngIf="listHeroTeam.length !==0">
-        <div>
+    <div class="content-team" *ngIf="listHeroTeam.length !== 0" >
+    <div class="content-power"> 
+        <div class="content-appearance">
             <h3 class="title-principal">THIS IS YOUR TEAM</h3>
             <p class="title-team">Team height average:</p>
             <p class="value-appearance">{{appearance.height}} CM</p>
             <p class="title-team">Team weight average:</p>
             <p class="value-appearance">{{appearance.weight}} KG</p>
         </div>
-        <h3 class="title-power" >POWER STATS</h3>
-        <app-powerstats   [powerstats]=listPowerstats ></app-powerstats>
-        <app-team-items></app-team-items>
         
+        <div >
+            <h3 class="title-power" >POWER STATS</h3>
+            <app-powerstats   [powerstats]=listPowerstats ></app-powerstats>
+        </div>
+    </div >
+  
+        <app-team-items></app-team-items>
+     
     </div>
 </section>

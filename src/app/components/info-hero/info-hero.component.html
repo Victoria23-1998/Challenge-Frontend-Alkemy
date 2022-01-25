@@ -1,12 +1,16 @@
 <section>
-    <h3>{{nameHero}}</h3>
-    <div *ngFor="let info of infoHero | keyvalue">
-        <p>{{info.key}}: {{info.value}}</p>
+<div class="content-info">
+    <div class="content-heroInfo">
+        <h3>{{nameHero}}</h3>
+        <div *ngFor="let info of infoHero | keyvalue">
+            <p>{{info.key}}: {{info.value}}</p>
 
+        </div>
     </div>
     <div>
         <img src="{{imgHero}}" alt="">
     </div>
+</div>
     <div>
         <button type="button" class="btn btn-outline-dark info" (click)="back()">Back</button>
     </div>

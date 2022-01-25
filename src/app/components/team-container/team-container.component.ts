@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalStorageService } from 'src/app/core/local-storage.service';
 import { TeamItemsService } from 'src/app/core/team-items.service';
 import { Appearan, HeroResponse } from 'src/app/interface/heroResponse';
 import { Powers } from 'src/app/interface/powerstatsResponse';
@@ -11,6 +12,7 @@ export class TeamContainerComponent implements OnInit {
   listHeroTeam:HeroResponse[]=[]
   listPowerstats:Powers={} as Powers
   appearance:Appearan={}
+  arrayVacio:boolean=false
   constructor(private teamItemsService:TeamItemsService) { 
     
   }
@@ -19,9 +21,12 @@ export class TeamContainerComponent implements OnInit {
 
     this.listPowerstats= this.teamItemsService.power
     this.appearance=this.teamItemsService.heightWeightHeroes
-  }
-  ngDoCheck(){
     this.listHeroTeam=this.teamItemsService.listHeroesTeam
-    this.listPowerstats= this.teamItemsService.power
+   
+    
   }
+
+  ngAfterContentChecked(){
+  this.listHeroTeam=this.teamItemsService.listHeroesTeam
+ }
 }

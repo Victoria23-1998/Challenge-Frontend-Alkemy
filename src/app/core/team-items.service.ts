@@ -30,6 +30,7 @@ export class TeamItemsService {
     weight:0
   }
   idHero:string=''
+  arrayVacio:boolean=true
   constructor(private http:HttpClient,private router:Router) { }
   
   getHeroForName(name:string):Observable<searchResponse>{
@@ -58,6 +59,7 @@ export class TeamItemsService {
         }else if(this.contadorMalos >3){
           typeValidation=2
         }else{
+         
           this.listHeroesTeam.push(dataHero)
           this.power.combat +=  parseInt(dataHero.powerstats?.combat!)
           this.power.durability +=  parseInt(dataHero.powerstats?.durability!)
@@ -67,6 +69,7 @@ export class TeamItemsService {
           this.power.strength+=  parseInt(dataHero.powerstats?.strength!)
           this.heightWeightTeam(dataHero,1)
           localStorage.setItem('HeroTeam',JSON.stringify(this.listHeroesTeam))
+          localStorage.setItem('power',JSON.stringify(this.power))
         }
         
       }else{
@@ -84,7 +87,7 @@ heightWeightTeam(dataHero:HeroResponse,tipoDeOperacion:number){
    //corta desde 0 hasta el primer espacio de la cadena
   let heightExtraido = dataHero.appearance?.height?.[1].substring(0, indiceHeight)
   let indiceWeight = dataHero.appearance?.weight?.[1].indexOf(" ")
-  let weightExtraido = dataHero.appearance?.height?.[1].substring(0, indiceWeight)
+  let weightExtraido = dataHero.appearance?.weight?.[1].substring(0, indiceWeight)
   if(tipoDeOperacion ===1){
     this.heightWeightHeroes.height! +=parseInt(heightExtraido!) 
     this.heightWeightHeroes.weight! += parseInt(weightExtraido!)
@@ -92,8 +95,10 @@ heightWeightTeam(dataHero:HeroResponse,tipoDeOperacion:number){
     this.heightWeightHeroes.height! -=parseInt(heightExtraido!) 
     this.heightWeightHeroes.weight! -= parseInt(weightExtraido!)
   }
-    
+  
+  localStorage.setItem('appearance',JSON.stringify( this.heightWeightHeroes))
 }
+
 deleteHero(idHero:string){
   let newArrayheroes:HeroResponse[]= this.listHeroesTeam.filter(el => el.id !==idHero)
   let heroEliminado:HeroResponse[]=this.listHeroesTeam.filter(el => el.id === idHero)
@@ -108,11 +113,29 @@ deleteHero(idHero:string){
     this.heightWeightTeam(dataHero,2)
   })
   
- return this.listHeroesTeam = newArrayheroes
+ 
+  
+  return  this.listHeroesTeam = newArrayheroes
 }
 
 InfoHero(idHero:string){
   this.idHero=idHero
-  console.log(this.idHero)
+
+}
+getLocalTeam(){
+  
+  this.listHeroesTeam= JSON.parse(localStorage.getItem('HeroTeam')||'')
+}
+getLocalPower(){
+  this.power=JSON.parse(localStorage.getItem('power')||'')
+}
+getLocalAppearance(){
+ this.heightWeightHeroes=JSON.parse(localStorage.getItem('appearance')||'')
+}
+
+deleteHeroLocal(idHero:string){
+ let heroes:HeroResponse[]=JSON.parse(localStorage.getItem('HeroTeam')||'')
+ let heroesTeam= heroes.filter(hero => hero.id !==idHero)
+ localStorage.setItem('HeroTeam',JSON.stringify( heroesTeam))
 }
 }
