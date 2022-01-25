@@ -35,14 +35,9 @@ export class WantedItemsComponent implements OnInit {
   constructor(private modalService: NgbModal, private teamItemsService:TeamItemsService) { }
 
   ngOnInit(): void {
-    
+   console.log(this.listHeoresGet)
   }
-  ngDoCheck(){
-    this.listHeoresGet.forEach(el=>{
-      this.listModal.name=el.name!
-      this.listModal.alignment=el.biography?.alignment!
-    })
-  }
+  
   //abre el modal
   open(content:any) {
     this.modalService.open(content,{ centered: true }).result.then((result) => {
@@ -70,7 +65,7 @@ export class WantedItemsComponent implements OnInit {
 
   searchPowerstats(idHero:string,content:any){
     this.power={} as Powers
-    
+    this. searchNameAndAlignment(idHero)
     this.open(content)
    
     this.idHero=idHero
@@ -85,31 +80,39 @@ export class WantedItemsComponent implements OnInit {
      
     })
   }
+  searchNameAndAlignment(idHero:string){
+    let hero:HeroResponse[] = this.listHeoresGet.filter(hero => hero.id === idHero)
+   hero.forEach(el=>{
+      this.listModal.name=el.name!
+      this.listModal.alignment=el.biography?.alignment!
+   })
+  }
 
   addHeroTeam(){
-    
-    
     switch (this.teamItemsService.addTeamItem(this.idHero,this.listHeoresGet)) {
+      case 0:
+        this.power= this.teamItemsService.power
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'You have been added to the Team successfully',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      break;
       case 1:
-        this.alertValidation('Se pueden agregar máximo 3 heroes buenos')
+        this.alertValidation('Maximum 3 good heroes can be added')
       break;
       case 2:
-        this.alertValidation('Se pueden agregar máximo 3 heroes malos')
+        this.alertValidation('Maximum 3 bad heroes can be added')
       break;
       case 3:
-        this.alertValidation('Este Heroe ya esta en el Team')
+        this.alertValidation('This Hero is already in the Team')
       break;
       
     }
     
-    this.power= this.teamItemsService.power
-    Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: 'Se ha agregado al Team con éxito',
-      showConfirmButton: false,
-      timer: 1500
-    })
+   
    
   }
 

@@ -53,7 +53,7 @@ export class TeamItemsService {
         
       //ver si es un heroe bueno o malo
         dataHero.biography?.alignment ==='good'? this.contadorBuenos=this.contadorBuenos+1 : this.contadorMalos=this.contadorMalos+1
-        
+  
         if(this.contadorBuenos >3){
           typeValidation=1
         }else if(this.contadorMalos >3){

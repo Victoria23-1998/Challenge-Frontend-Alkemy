@@ -6,6 +6,7 @@ import { Result } from 'src/app/interface/searchResponse';
 import { OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ItemsService } from 'src/app/core/items.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -36,17 +37,24 @@ export class SearchComponent implements OnInit,OnDestroy {
    
     this.heroesList=[];
     this.subscription.push(this.teamItemsService.getHeroForName(this.nameSearch.value).subscribe(data=>{
-    data.results.forEach(el =>{
-      this.heroesList.push(el)
-    })
-    this.arrayHeroes=[]
-    sessionStorage.setItem('filtro',this.nameSearch.value)
-   },error =>{
-      console.log(error.error)
-    }))
- 
+    if(data.response === 'error'){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'character with given name not found',
+      })
+    }else{
+      data.results.forEach(el =>{
+        this.heroesList.push(el)
+      })
+      this.arrayHeroes=[]
+      sessionStorage.setItem('filtro',this.nameSearch.value)
+  
+    }
     
-  }
+   }))
+ 
+}
  
   getHeroes(){
     this.heroesList=this.itemsService.parameters

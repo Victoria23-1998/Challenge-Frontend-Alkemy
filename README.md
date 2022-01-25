@@ -5,7 +5,6 @@ Clave: react
 
 # Ver DEMO aquí:
 
-https://apphero.netlify.app/
 
 # Comenzando 🚀
 Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local.
